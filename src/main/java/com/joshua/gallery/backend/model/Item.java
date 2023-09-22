@@ -13,7 +13,6 @@ import lombok.Getter;
 @Getter
 @Entity
 @Table(name = "items")
-@AllArgsConstructor
 public class Item {
 
      @Id
