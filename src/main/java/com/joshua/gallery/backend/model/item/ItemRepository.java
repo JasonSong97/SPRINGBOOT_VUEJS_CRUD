@@ -1,4 +1,4 @@
-package com.joshua.gallery.backend.model;
+package com.joshua.gallery.backend.model.item;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

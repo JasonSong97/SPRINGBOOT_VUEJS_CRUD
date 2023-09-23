@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.joshua.gallery.backend.model.Item;
-import com.joshua.gallery.backend.model.ItemRepository;
+import com.joshua.gallery.backend.model.item.Item;
+import com.joshua.gallery.backend.model.item.ItemRepository;
 
 @RequestMapping("/api")
 @RestController

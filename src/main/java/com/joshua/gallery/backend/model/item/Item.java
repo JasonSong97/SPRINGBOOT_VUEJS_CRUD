@@ -1,4 +1,4 @@
-package com.joshua.gallery.backend.model;
+package com.joshua.gallery.backend.model.item;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
