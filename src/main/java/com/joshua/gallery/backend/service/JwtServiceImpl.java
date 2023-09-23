@@ -19,6 +19,8 @@ public class JwtServiceImpl implements JwtService{
     public String getToken(String key, Object value) {
         Date expTime = new Date();
         expTime.setTime(expTime.getTime() + 1000 * 60 * 5); // 5분
+
+        // secretKey -> + (parseBase64Binary) secretByteKey -> + (HS256) signKey
         byte[] secretByteKey = DatatypeConverter.parseBase64Binary(secretKey);
         Key signKey = new SecretKeySpec(secretByteKey, SignatureAlgorithm.HS256.getJcaName());
 
@@ -27,12 +29,12 @@ public class JwtServiceImpl implements JwtService{
         headerMap.put("alg", "HS256");
 
         Map<String, Object> map = new HashMap<>();
-        map.put(key, value);
+        map.put(key, value); // "id", id
         JwtBuilder builder = Jwts.builder().setHeader(headerMap)
                 .setClaims(map)
                 .setExpiration(expTime)
                 .signWith(signKey, SignatureAlgorithm.HS256);
 
-        return builder.compact();
+        return builder.compact(); // 전부 함친 값
     }
 }
