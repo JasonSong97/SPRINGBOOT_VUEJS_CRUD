@@ -30,12 +30,14 @@ public class JwtServiceImpl implements JwtService{
 
         Map<String, Object> map = new HashMap<>();
         map.put(key, value); // "id", id
+        
+        // JWT 만들기
         JwtBuilder builder = Jwts.builder().setHeader(headerMap)
                 .setClaims(map)
                 .setExpiration(expTime)
                 .signWith(signKey, SignatureAlgorithm.HS256);
 
-        return builder.compact(); // 전부 함친 값
+        return builder.compact(); // 전부 합친 값 리턴 (= JWT)
     }
 
     // getClaims를 통해 웹브라우저를 통해 쿠키를 넣어도 로그인이 되는 것 막기
