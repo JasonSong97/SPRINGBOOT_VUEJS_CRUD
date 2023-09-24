@@ -24,6 +24,16 @@ public class AccountApiController {
      @Autowired
      JwtService jwtService;
 
+     @PostMapping("/account/logout")
+     public ResponseEntity login(HttpServletResponse res) {
+          Cookie cookie = new Cookie("token", null);
+          cookie.setPath("/");
+          cookie.setMaxAge(0);
+
+          res.addCookie(cookie);
+          throw new ResponseStatusException(HttpStatus.OK);
+     }
+
      @PostMapping("/account/login")
      public ResponseEntity login(@RequestBody Map<String, String> params, HttpServletResponse res) {
           Member member = memberRepository.findByEmailAndPassword(params.get("email"), params.get("password"));
