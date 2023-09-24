@@ -18,4 +18,12 @@ public class Cart {
 
     @Column
     private int itemId;
+
+    public void addMemberId(int memberId) {
+        this.memberId = memberId;
+    }
+
+    public void addItemId(int itemId) {
+        this.itemId = itemId;
+    }
 }
