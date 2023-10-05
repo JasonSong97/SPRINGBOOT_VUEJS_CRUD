@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Getter
 @Entity
-@Table(name = "carts")
+@Table(name = "cart_tb")
 public class Cart {
 
     @Id
@@ -14,13 +14,13 @@ public class Cart {
     private int id;
 
     @Column
-    private int memberId;
+    private int userId;
 
     @Column
     private int itemId;
 
-    public void addMemberId(int memberId) {
-        this.memberId = memberId;
+    public void addUserId(int userId) {
+        this.userId = userId;
     }
 
     public void addItemId(int itemId) {

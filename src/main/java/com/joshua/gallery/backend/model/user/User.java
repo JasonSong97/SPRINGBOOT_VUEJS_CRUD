@@ -1,4 +1,4 @@
-package com.joshua.gallery.backend.model.member;
+package com.joshua.gallery.backend.model.user;
 
 import lombok.Getter;
 
@@ -6,8 +6,8 @@ import javax.persistence.*;
 
 @Getter
 @Entity
-@Table(name = "members")
-public class Member {
+@Table(name = "user_tb")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

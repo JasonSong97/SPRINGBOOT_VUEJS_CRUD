@@ -33,8 +33,8 @@ public class CartApiController {
           if (!jwtService.isValid(token)) {
                throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
           }
-          int memberId = jwtService.getId(token);
-          List<Cart> carts = cartRepository.findByMemberId(memberId);
+          int userId = jwtService.getId(token);
+          List<Cart> carts = cartRepository.findByUserId(userId);
 
           // itemIds 추출이유 : carts에는 어떤Item이 들어있는지 알 수 없음
           List<Integer> itemIds = carts.stream().map(Cart::getItemId).collect(Collectors.toList());
@@ -50,13 +50,13 @@ public class CartApiController {
           if (!jwtService.isValid(token)) {
                throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
           }
-          int memberId = jwtService.getId(token);
+          int userId = jwtService.getId(token);
           
           // cart 존재 유무에 따른 선택
-          Cart cart = cartRepository.findByMemberIdAndItemId(memberId, itemId);
+          Cart cart = cartRepository.findByUserIdAndItemId(userId, itemId);
           if (cart == null) {
                Cart newCart = new Cart();
-               newCart.addMemberId(memberId);
+               newCart.addUserId(userId);
                newCart.addItemId(itemId);
                cartRepository.save(newCart);
           }
@@ -71,8 +71,8 @@ public class CartApiController {
           if (!jwtService.isValid(token)) {
                throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
           }
-          int memberId = jwtService.getId(token);
-          Cart cart = cartRepository.findByMemberIdAndItemId(memberId, itemId);
+          int userId = jwtService.getId(token);
+          Cart cart = cartRepository.findByUserIdAndItemId(userId, itemId);
           cartRepository.delete(cart);
 
           return new ResponseEntity<>(HttpStatus.OK);

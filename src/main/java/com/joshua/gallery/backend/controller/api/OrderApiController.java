@@ -34,8 +34,8 @@ public class OrderApiController {
                throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
           }
 
-          int memberId = jwtService.getId(token);
-          List<Order> orders = orderRepository.findByMemberIdOrderByIdDesc(memberId);
+          int userId = jwtService.getId(token);
+          List<Order> orders = orderRepository.findByUserIdOrderByIdDesc(userId);
           return new ResponseEntity<>(orders, HttpStatus.OK);
      }
 
@@ -49,8 +49,8 @@ public class OrderApiController {
 
           // Order 새롭게 만들기
           Order newOrder = new Order();
-          int memberId = jwtService.getId(token);
-          newOrder.addMemberId(memberId);
+          int userId = jwtService.getId(token);
+          newOrder.addUserId(userId);
           newOrder.addName(orderDto.getName());
           newOrder.addAddress(orderDto.getAddress());
           newOrder.addPayment(orderDto.getPayment());
@@ -60,7 +60,7 @@ public class OrderApiController {
           orderRepository.save(newOrder);
 
           // 구매완료 후 장바구니 비우기
-          cartRepository.deleteByMemberId(memberId);
+          cartRepository.deleteByUserId(userId);
 
           return new ResponseEntity<>(HttpStatus.OK);
      }

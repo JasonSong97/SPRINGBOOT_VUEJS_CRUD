@@ -1,7 +1,7 @@
 package com.joshua.gallery.backend.controller.api;
 
-import com.joshua.gallery.backend.model.member.Member;
-import com.joshua.gallery.backend.model.member.MemberRepository;
+import com.joshua.gallery.backend.model.user.User;
+import com.joshua.gallery.backend.model.user.UserRepository;
 import com.joshua.gallery.backend.service.JwtService;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.Map;
 public class AccountApiController {
 
      @Autowired
-     MemberRepository memberRepository;
+     UserRepository userRepository;
 
      @Autowired
      JwtService jwtService;
@@ -36,9 +36,9 @@ public class AccountApiController {
 
      @PostMapping("/account/login")
      public ResponseEntity login(@RequestBody Map<String, String> params, HttpServletResponse res) {
-          Member member = memberRepository.findByEmailAndPassword(params.get("email"), params.get("password"));
-          if (member != null) {
-               int id = member.getId();
+          User user = userRepository.findByEmailAndPassword(params.get("email"), params.get("password"));
+          if (user != null) {
+               int id = user.getId();
                String token = jwtService.getToken("id", id);
 
                Cookie cookie = new Cookie("token", token);

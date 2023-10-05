@@ -12,7 +12,7 @@ import lombok.Getter;
 
 @Getter
 @Entity
-@Table(name = "items")
+@Table(name = "item_tb")
 public class Item {
 
      @Id
