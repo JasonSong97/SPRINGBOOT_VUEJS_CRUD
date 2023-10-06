@@ -1,6 +1,8 @@
 package com.joshua.gallery.backend.model.cart;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
